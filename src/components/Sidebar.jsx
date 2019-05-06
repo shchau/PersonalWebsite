@@ -33,7 +33,7 @@ class SideBar extends Component {
 							</Menu.Item>
 						</Link>
 						
-						<Link to="Not Found">
+						<Link to="AboutMe">
 							<Menu.Item onClick={this.handleSidebarVisibility}>
 								<Icon name='user circle' />
 								About

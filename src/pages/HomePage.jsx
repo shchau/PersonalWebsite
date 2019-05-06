@@ -8,11 +8,13 @@ const Circle = posed.div({
 	small: {
 		scale: 1,
 		opacity: 0.5,
+		rotate: 0,
 	},
 	
 	big: {
 		scale: 1.5,
 		opacity: 1,
+		rotate: 360,
 		transition: {
 			type: 'spring',
 		}
@@ -28,7 +30,9 @@ const charPoses = {
 	enter: { 
 		opacity: 1, 
 		y: 0,
-		delay: ({ charIndex }) => charIndex *30	 
+		beforeChildren: true,
+		staggerChildren: 2500,
+		delay: ({ charIndex }) => charIndex * 200
 	},
 	
 	exit: { 
@@ -44,6 +48,7 @@ class HomePage extends Component {
 		super(props);
 		this.state = {
 			circleEntering: true,
+			textEntering: false,
 			changeText: false,
 		}
 		this.changeWelcomeMessage = this.changeWelcomeMessage.bind(this);
@@ -56,6 +61,13 @@ class HomePage extends Component {
 				circleEntering: false, 
 			});
 		}, 0.500);
+		
+		setTimeout(() => {
+			this.setState({ 
+				textEntering: false, 
+			});
+		}, 0.500);
+		
 	}
 
 	changeWelcomeMessage() {

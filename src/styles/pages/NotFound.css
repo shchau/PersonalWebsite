@@ -1,0 +1,46 @@
+.notFoundPage {
+	position:absolute;
+	top: 20%;
+	left:0;
+	right:0;
+	bottom:0;
+	width: 100%;
+	display:block;
+}
+
+.floatingNumbers {
+	color: white;
+	font-size: 11rem;
+	
+	-moz-animation:movingText 15s linear infinite;
+	-ms-animation:movingText 15s linear infinite;
+	-o-animation:movingText 15s linear infinite;
+	-webkit-animation:movingText 15s linear infinite;
+	animation:movingText 15s linear infinite;
+	white-space: nowrap;
+}
+
+.notFoundText {
+	color: white;
+	font-size: 3rem;
+	margin-left: 5%;
+	display: flex;
+	justify-content: center;
+}
+
+@keyframes movingText {
+    0% {margin-left:-75vw; }
+    100% {margin-left:105vw;}
+}
+@-webkit-keyframes movingText {
+    0% {margin-left: -75vw; }
+    100% {margin-left:105vw;}
+}
+@-moz-keyframes movingText {
+    0% {margin-left: -75vw; }
+    100% {margin-left:105vw;}
+}
+@-ms-keyframes movingText {
+    0% {margin-left: -75vw; }
+    100% {margin-left:105vw;}
+}
