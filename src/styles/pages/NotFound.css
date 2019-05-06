@@ -10,7 +10,7 @@
 
 .notFoundNumber {
 	color: white;
-	font-size: 11rem;
+	font-size: 7rem;
 	display: flex;
 	justify-content: center;
 }
@@ -33,11 +33,11 @@
 	display:block;
 	
 	
-	-moz-animation:movingUFO 300s ease-in-out infinite;
-	-ms-animation:movingUFO 300s ease-in-out infinite;
-	-o-animation:movingUFO 300s ease-in-out infinite;
-	-webkit-animation:movingUFO 300s ease-in-out infinite;
-	animation:movingUFO 300s ease-in-out infinite;
+	-moz-animation:movingUFO 100s linear infinite;
+	-ms-animation:movingUFO 100s linear infinite;
+	-o-animation:movingUFO 100s linear infinite;
+	-webkit-animation:movingUFO 100s linear infinite;
+	animation:movingUFO 100s linear infinite;
 	white-space: nowrap;
 }
 
