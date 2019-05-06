@@ -6,8 +6,8 @@
 }
 
 .welcomeCircle {
-	width: 11rem;
-	height: 11rem;
+	width: 12rem;
+	height: 12rem;
 	background: #2c3e50; 
 	background: url('../../assets/images/planetTexture1.jpeg');
 	box-shadow: inset 16px 0 40px 3px rgb(0, 0, 0), inset -3px 0 6px 2px rgba(255, 255, 255, 0.2);
@@ -19,6 +19,7 @@
 	justify-content: center;
 	align-items: center;
 	color: white;
+	margin-top: 18%;
 }
 
 @keyframes rotatingSphere {
