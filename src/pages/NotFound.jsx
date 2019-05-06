@@ -4,7 +4,8 @@ import '../styles/pages/NotFound.css';
 const NotFound = () => {
     return (
         <div className="notFoundPage">
-            <h1 className="floatingNumbers"> 404</h1>
+        	<span className="floatingUFO"></span>
+            <h1 className="notFoundNumber"> 404</h1>
             <p className="notFoundText">The page you're looking for does not exist.</p>
         </div>
     )

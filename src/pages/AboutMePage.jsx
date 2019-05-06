@@ -96,7 +96,7 @@ class AboutMePage extends Component {
 					);
 	
 		return(	
-			<div className="welcomeCircleContainer">
+			<div className="aboutMeCircleContainer">
 				<Circle 
 					className="aboutMeCircle"
 					pose={this.state.circleEntering ? "small" : "big"}

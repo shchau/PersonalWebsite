@@ -8,16 +8,11 @@
 	display:block;
 }
 
-.floatingNumbers {
+.notFoundNumber {
 	color: white;
 	font-size: 11rem;
-	
-	-moz-animation:movingText 15s linear infinite;
-	-ms-animation:movingText 15s linear infinite;
-	-o-animation:movingText 15s linear infinite;
-	-webkit-animation:movingText 15s linear infinite;
-	animation:movingText 15s linear infinite;
-	white-space: nowrap;
+	display: flex;
+	justify-content: center;
 }
 
 .notFoundText {
@@ -28,19 +23,37 @@
 	justify-content: center;
 }
 
-@keyframes movingText {
-    0% {margin-left:-75vw; }
-    100% {margin-left:105vw;}
+.floatingUFO {	
+	background: url('../../assets/images/ufo.png') repeat top center;
+	z-index: -97;
+	width: 100%;
+	height: 100%;
+	top: -100px;
+	position:absolute;
+	display:block;
+	
+	
+	-moz-animation:movingUFO 300s ease-in-out infinite;
+	-ms-animation:movingUFO 300s ease-in-out infinite;
+	-o-animation:movingUFO 300s ease-in-out infinite;
+	-webkit-animation:movingUFO 300s ease-in-out infinite;
+	animation:movingUFO 300s ease-in-out infinite;
+	white-space: nowrap;
 }
-@-webkit-keyframes movingText {
-    0% {margin-left: -75vw; }
-    100% {margin-left:105vw;}
+
+@keyframes movingUFO {
+    from {background-position:0;}
+    to {background-position:-10000px;}
 }
-@-moz-keyframes movingText {
-    0% {margin-left: -75vw; }
-    100% {margin-left:105vw;}
+@-webkit-keyframes movingUFO {
+    from {background-position:0;}
+    to {background-position:-10000px;}
 }
-@-ms-keyframes movingText {
-    0% {margin-left: -75vw; }
-    100% {margin-left:105vw;}
+@-moz-keyframes movingUFO {
+    from {background-position:0;}
+    to {background-position:-10000px;}
+}
+@-ms-keyframes movingUFO {
+    from {background-position:0;}
+    to {background-position:-10000px;}
 }
