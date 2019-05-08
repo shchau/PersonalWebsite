@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 import { Button, Icon, Menu, Sidebar } from "semantic-ui-react";
 import 'semantic-ui-css/semantic.min.css';
 import '../styles/components/Sidebar.css';
@@ -26,26 +26,20 @@ class SideBar extends Component {
 		return( 
 			<div>	
 					<Sidebar as={Menu} animation='overlay' icon='labeled' inverted vertical visible={this.state.visible} width='thin'>
-						<Link to="/Home" >
-							<Menu.Item onClick={this.handleSidebarVisibility}>
-								<Icon name='home' />
-								Home
-							</Menu.Item>
-						</Link>
-						
-						<Link to="AboutMe">
-							<Menu.Item onClick={this.handleSidebarVisibility}>
-								<Icon name='user circle' />
-								About
-							</Menu.Item>
-						</Link>
-						
-						<Link to="Not Found">
-							<Menu.Item onClick={this.handleSidebarVisibility}>
-								<Icon name='boxes' />
-								TBD
-							</Menu.Item>
-						</Link>
+						<Menu.Item as={NavLink} to="/Home" onClick={this.handleSidebarVisibility}>
+							<Icon name='home' />
+							Home
+						</Menu.Item>
+
+						<Menu.Item as={NavLink} to="/AboutMe" onClick={this.handleSidebarVisibility}>
+							<Icon name='user circle' />
+							About
+						</Menu.Item>
+
+						<Menu.Item as={NavLink} to="Not Found" onClick={this.handleSidebarVisibility}>
+							<Icon name='boxes' />
+							404
+						</Menu.Item>
 					</Sidebar>
 					<Button.Group className="sidebarVisibilityButtonContainer">
 						<Button disabled={this.state.visible} onClick={this.handleSidebarVisibility}>
@@ -60,4 +54,4 @@ class SideBar extends Component {
 	}
 }
 
-export default SideBar;
+export default withRouter(SideBar);
