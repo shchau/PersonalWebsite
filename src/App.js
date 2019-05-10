@@ -4,7 +4,7 @@ import SideBar from './components/Sidebar';
 import HomePage from './pages/HomePage';
 import AboutMePage from './pages/AboutMePage';
 import NotFound from './pages/NotFound';
-import './styles/pages/spaceBG/spaceBG.css';
+import './styles/spaceBG/spaceBG.css';
 import './App.css';
 
 class App extends Component {
