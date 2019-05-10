@@ -35,11 +35,17 @@ class SideBar extends Component {
 							<Icon name='user circle' />
 							About
 						</Menu.Item>
-
+						
+						<Menu.Item as={NavLink} to="PathFinding" onClick={this.handleSidebarVisibility}>
+							<Icon name='sitemap' />
+							Path Finder
+						</Menu.Item>
+						
 						<Menu.Item as={NavLink} to="Not Found" onClick={this.handleSidebarVisibility}>
 							<Icon name='boxes' />
 							404
 						</Menu.Item>
+						
 					</Sidebar>
 					<Button.Group className="sidebarVisibilityButtonContainer">
 						<Button disabled={this.state.visible} onClick={this.handleSidebarVisibility}>
