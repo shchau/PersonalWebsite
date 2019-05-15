@@ -17,6 +17,7 @@ class PathFindingPage extends Component {
 		this.state = {
 		};
 		this.generateAsteroids = this.generateAsteroids.bind(this);
+		this.beginPathFinder = this.beginPathFinder.bind(this);
 	}
 	
 	generateAsteroids() {
@@ -29,15 +30,19 @@ class PathFindingPage extends Component {
 			possibleIndices.splice(index, 1);
 		}
 		
-		return (selectedSpawns.map(function(index) {
+		return (selectedSpawns.map((index) => {
 			return(
 				<span key={index} style={{position: 'absolute', left: spawnLocations[index][0], top: spawnLocations[index][1],}}>
-					<Asteroid/>
+					<Asteroid id={index} beginPathFinder={this.beginPathFinder} />
 				</span>
 			
 			);
 		}));
 	
+	}
+
+	beginPathFinder(index) {
+		console.log(index);
 	}
 
 	render() {

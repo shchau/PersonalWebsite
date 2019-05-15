@@ -41,12 +41,14 @@ class Asteroid extends Component {
 						return 	<Circle 
 									className="asteroidMini"
 									pose={this.state.circleEntering ? "small" : "big"}
+									onClick={() => this.props.beginPathFinder(this.props.id)}
 								/>;
 					} 
 					else {
 						return <Circle 
 									className="asteroid"
 									pose={this.state.circleEntering ? "small" : "big"}
+									onClick={() => this.props.beginPathFinder(this.props.id)}
 								/>;
 					}
 				}}
