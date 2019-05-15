@@ -1,5 +1,4 @@
 .asteroid {
-	left: 20%;
 	position: absolute;
 	width: 5rem;
 	height: 5rem;
@@ -19,7 +18,6 @@
 }
 
 .asteroidMini {
-	left: 20%;
 	position: absolute;
 	width: 3rem;
 	height: 3rem;
