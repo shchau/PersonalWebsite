@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import SvgLines from 'react-mt-svg-lines';
 import Asteroid from '../components/Asteroid';
+import {connect} from 'react-redux';
+import * as pathFinderActions from "../actions/pathFinderActions";
+
 
 const spawnLocations = [
 	['10', '15'], ['10', '45'], ['15', '70'],
 	['30', '40'], ['30', '70'], ['40', '20'],
 	['50', '30'], ['50', '50'], ['50', '80'],
 	['60', '15'], ['60', '40'], ['60', '70'],
-	['70', '40'], ['70', '50'], ['70', '85'],
-	['80', '15'], ['80', '35'], ['80', '70'] 
+	['70', '40'], ['70', '60'], ['70', '85'],
+	['80', '15'], ['85', '35'], ['90', '70'] 
 ];
+
+var numAsteroids;
 
 class PathFindingPage extends Component {	
 
@@ -24,7 +29,7 @@ class PathFindingPage extends Component {
 	
 	generateAsteroids() {
 		let possibleIndices = [...Array(spawnLocations.length)].map((_,i) => i);
-		let numAsteroids = Math.floor(Math.random() * (spawnLocations.length - 4) + 4 );
+		numAsteroids = Math.floor(Math.random() * (spawnLocations.length - 4) + 4 );
 		var selectedSpawns = [];
 		for (let i = 0; i < numAsteroids; i++){
 			let index = Math.floor(Math.random() * possibleIndices.length);
@@ -47,14 +52,16 @@ class PathFindingPage extends Component {
 
 	drawPath(drawInstructions) {
 		return(
-			<SvgLines animate={4000} duration={6000}>
-				<svg viewBox="0 0 100 100">
-					<path d={drawInstructions} 
-					style={{stroke:"blue", strokeWidth: 0.2}}
-					fill="none"
-					/>
-				</svg>
-			</SvgLines>
+			<div className="lineContainer">
+				<SvgLines animate={4000} duration={6000}>
+					<svg viewBox="0 0 100 100">
+						<path d={drawInstructions} 
+						style={{stroke:"blue", strokeWidth: 0.2}}
+						fill="none"
+						/>
+					</svg>
+				</SvgLines>
+			</div>
 		);
 	}
 
@@ -66,7 +73,7 @@ class PathFindingPage extends Component {
 		// Call drawPath given order returned by path finding algorithm 
 		//let drawInstructions = "M " + x1 + ", " + y1 + " L " + x2 + ", " + y2;
 		// REDUX time lol
-		let drawInstructions = "M 10, 15 L 30, 40";
+		let drawInstructions = "M 0, 0 L 20, 30";
 		return(this.drawPath(drawInstructions));
 	}
 
@@ -75,12 +82,26 @@ class PathFindingPage extends Component {
 	// don't allow user to select starting point for path finder.
 		return(	
 			<span>
-				{this.generateAsteroids()}	
 				{this.beginPathFinder(0)} 
-				
+				{this.generateAsteroids()}	
 			</span>
 			)
     }
 }
 
-export default PathFindingPage;
+const mapStateToProps = state => {	
+    return {
+		startingPoint: state.pathFinderReducer.startingPoint,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        startFetching: () => {
+        	return dispatch(pathFinderActions.setStartingPoint());
+        },
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PathFindingPage);
