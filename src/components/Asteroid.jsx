@@ -38,7 +38,8 @@ class Asteroid extends Component {
 			<MediaQuery maxDeviceWidth={1224}>
 				{(matches) => {
 					if (matches) {
-						return 	<Circle 
+						return 	<Circle
+									id={this.props.id}
 									className="asteroidMini"
 									pose={this.state.circleEntering ? "small" : "big"}
 									onClick={() => this.props.beginPathFinder(this.props.id)}
@@ -46,6 +47,7 @@ class Asteroid extends Component {
 					} 
 					else {
 						return <Circle 
+									id={this.props.id}
 									className="asteroid"
 									pose={this.state.circleEntering ? "small" : "big"}
 									onClick={() => this.props.beginPathFinder(this.props.id)}

@@ -8,3 +8,14 @@ export const setStartingPoint = (index) => {
 		})
 	}
 }
+
+export const setDrawInstructions = (drawInstructions) => {
+	return (dispatch) => {
+		return dispatch({
+			type: 'SET_PATH',
+			payload: {
+				drawInstructions: drawInstructions,
+			}
+		})
+	}
+}

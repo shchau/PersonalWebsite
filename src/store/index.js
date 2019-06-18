@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import socialDistApp from "../reducers/index";
+import combineReducers from "../reducers/index";
 
-const store = createStore(socialDistApp, applyMiddleware(thunk));
+const store = createStore(combineReducers, applyMiddleware(thunk));
 
 export default store;
