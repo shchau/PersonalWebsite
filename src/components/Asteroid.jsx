@@ -42,7 +42,7 @@ class Asteroid extends Component {
 									id={this.props.id}
 									className="asteroidMini"
 									pose={this.state.circleEntering ? "small" : "big"}
-									onClick={() => this.props.beginPathFinder(this.props.id)}
+									onClick={() => this.props.removeAsteroid(this.props.id)}
 								/>;
 					} 
 					else {
@@ -50,7 +50,7 @@ class Asteroid extends Component {
 									id={this.props.id}
 									className="asteroid"
 									pose={this.state.circleEntering ? "small" : "big"}
-									onClick={() => this.props.beginPathFinder(this.props.id)}
+									onClick={() => this.props.removeAsteroid(this.props.id)}
 								/>;
 					}
 				}}

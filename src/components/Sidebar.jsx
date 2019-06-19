@@ -36,12 +36,12 @@ class SideBar extends Component {
 							About
 						</Menu.Item>
 						
-						<Menu.Item as={NavLink} to="PathFinding" onClick={this.handleSidebarVisibility}>
+						<Menu.Item as={NavLink} to="Asteroids" onClick={this.handleSidebarVisibility}>
 							<Icon name='sitemap' />
-							Path Finder
+							Asteroids
 						</Menu.Item>
 						
-						<Menu.Item as={NavLink} to="Not Found" onClick={this.handleSidebarVisibility}>
+						<Menu.Item as={NavLink} to="NotFound" onClick={this.handleSidebarVisibility}>
 							<Icon name='boxes' />
 							404
 						</Menu.Item>
