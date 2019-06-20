@@ -38,7 +38,7 @@ class SideBar extends Component {
 						
 						<Menu.Item as={NavLink} to="Asteroids" onClick={this.handleSidebarVisibility}>
 							<Icon name='sitemap' />
-							Asteroids
+							Asteroid Field
 						</Menu.Item>
 						
 						<Menu.Item as={NavLink} to="NotFound" onClick={this.handleSidebarVisibility}>

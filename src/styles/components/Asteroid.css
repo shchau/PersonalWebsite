@@ -17,6 +17,15 @@
 	margin-top: 18%;
 }
 
+.explosion {
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	background: #996600; 
+	background: url('../../assets/images/explosion.png');
+	background-size: 70px;
+}
+
 .asteroidMini {
 	position: absolute;
 	width: 2rem;
@@ -35,6 +44,15 @@
 	color: white;
 	margin-top: 18%;
 
+}
+
+.explosionMini {
+	position: absolute;
+	width: 2rem;
+	height: 2rem;
+	background: #996600; 
+	background: url('../../assets/images/explosion.png');
+	background-size: 30px;
 }
 
 @keyframes rotatingSphere {

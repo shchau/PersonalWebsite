@@ -18,7 +18,8 @@
 	justify-content: center;
 	align-items: center;
 	color: white;
-	margin-top: 18%;
+	margin-top: 28%;
+	margin-left: 5%;
 }
 
 @keyframes rotatingSphere {
