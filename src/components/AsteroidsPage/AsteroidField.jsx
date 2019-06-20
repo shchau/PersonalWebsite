@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Asteroid from '../components/Asteroid';
+import Asteroid from './Asteroid';
 
 const spawnLocations = [
 	['10', '15'], ['10', '45'], ['15', '70'],

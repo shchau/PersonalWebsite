@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AsteroidField from '../components/AsteroidField';
+import AsteroidField from '../components/AsteroidsPage/AsteroidField';
 
 const spawnLocations = [
 	['10', '15'], ['10', '45'], ['15', '70'],
@@ -34,6 +34,34 @@ class AsteroidsPage extends Component {
 	render() {
 	// New Idea: click each asteroid to destroy them. Fetch info from another site to display
 	// something as a reward
+	
+		const urlEndpoint = "https://en.wikipedia.org/w/api.php?format=json" 
+					+ "&action=query"
+					+ "&generator=random"
+					+ "&prop=extracts"
+					+ "&exchars=500"
+					+ "&origin=*",
+					
+			payload = {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"accept": "application/problem+json",
+				},
+			},
+			getRequest = new Request(urlEndpoint, payload);
+		
+		fetch(getRequest).then( (httpResponse) => {
+							if (httpResponse.status === 200) {
+								httpResponse.json().then( (results) => {
+									console.log(results);
+								});
+							}
+							else {
+								alert("Request failed");
+							}
+		});
+	
 		return(	
 			<span>
 				<AsteroidField asteroidList={this.state.asteroidList}/>

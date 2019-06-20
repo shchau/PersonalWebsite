@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import posed from 'react-pose';
 import MediaQuery from 'react-responsive';
-import '../styles/components/Asteroid.css';
+import '../../styles/components/Asteroid.css';
 
 const Circle = posed.div({
 	small: {
