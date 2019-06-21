@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
-import pathFinderReducer from './pathFinderReducer';
+import PathFinderReducer from './PathFinderReducer';
+import AsteroidFieldReducer from './AsteroidFieldReducer';
+
 
 export default combineReducers({
-	pathFinderReducer,
+	PathFinderReducer,
+	AsteroidFieldReducer,
 });

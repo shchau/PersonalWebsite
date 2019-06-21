@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Asteroid from './Asteroid';
+import {connect} from 'react-redux';
+import * as AsteroidFieldActions from '../../actions/AsteroidFieldActions';
 
 const spawnLocations = [
 	['10', '15'], ['10', '45'], ['15', '70'],
@@ -22,6 +24,10 @@ class AsteroidField extends Component {
 	}
 	
 	drawAsteroids() {
+		if (this.state.displayedAsteroids.length === 0) {
+			this.props.openModalSignal();
+		}
+		
 		return (this.state.displayedAsteroids.map((index) => {
 			let leftPos = spawnLocations[index][0] + "%";
 			let topPos = spawnLocations[index][1] + "%";
@@ -46,8 +52,6 @@ class AsteroidField extends Component {
 	}
 
 	render() {
-	// New Idea: click each asteroid to destroy them. Fetch info from another site to display
-	// something as a reward 
 		return(	
 			<span>
 				{[this.drawAsteroids()]}	
@@ -56,4 +60,12 @@ class AsteroidField extends Component {
     }
 }
 
-export default AsteroidField;
+const mapDispatchToProps = dispatch => {
+    return {
+        openModalSignal: () => {
+            return dispatch(AsteroidFieldActions.openModal());
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AsteroidField);

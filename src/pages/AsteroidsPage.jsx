@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import AsteroidField from '../components/AsteroidsPage/AsteroidField';
+import RewardModal from '../components/AsteroidsPage/RewardModal';
+import {connect} from 'react-redux';
 
-const spawnLocations = [
-	['10', '15'], ['10', '45'], ['15', '70'],
-	['30', '40'], ['30', '70'], ['40', '20'],
-	['50', '30'], ['50', '50'], ['50', '80'],
-	['60', '15'], ['60', '40'], ['60', '70'],
-	['70', '40'], ['70', '60'], ['70', '85'],
-	['80', '15'], ['85', '35'], ['80', '70'] 
-];
 
 function generateAsteroids() {
-	let possibleIndices = [...Array(spawnLocations.length)].map((_,i) => i);
-	let numAsteroids = Math.floor(Math.random() * (spawnLocations.length - 4) + 4 );
+	let numSpawnLocations = 18;
+	let maxNumAsteroids = 10;
+	
+	let possibleSpawnLocations = [...Array(numSpawnLocations)].map((_,i) => i);
+	let numAsteroids = Math.floor(Math.random() * (maxNumAsteroids - 4) + 4 );
 	let selectedSpawns = [];
 	for (let i = 0; i < numAsteroids; i++){
-		let index = Math.floor(Math.random() * possibleIndices.length);
-		selectedSpawns.push(possibleIndices[index]);
-		possibleIndices.splice(index, 1);
+		let index = Math.floor(Math.random() * possibleSpawnLocations.length);
+		selectedSpawns.push(possibleSpawnLocations[index]);
+		possibleSpawnLocations.splice(index, 1);
 	};
 	return(selectedSpawns);
 }
@@ -27,47 +24,29 @@ class AsteroidsPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			asteroidList: generateAsteroids(),
 		};
 	}
 
 	render() {
-	// New Idea: click each asteroid to destroy them. Fetch info from another site to display
-	// something as a reward
-	
-		const urlEndpoint = "https://en.wikipedia.org/w/api.php?format=json" 
-					+ "&action=query"
-					+ "&generator=random"
-					+ "&prop=extracts"
-					+ "&exchars=500"
-					+ "&origin=*",
-					
-			payload = {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					"accept": "application/problem+json",
-				},
-			},
-			getRequest = new Request(urlEndpoint, payload);
-		
-		fetch(getRequest).then( (httpResponse) => {
-							if (httpResponse.status === 200) {
-								httpResponse.json().then( (results) => {
-									console.log(results);
-								});
-							}
-							else {
-								alert("Request failed");
-							}
-		});
-	
 		return(	
 			<span>
-				<AsteroidField asteroidList={this.state.asteroidList}/>
+			
+			{this.props.showModal
+			?
+			<RewardModal/> 
+			:
+			<AsteroidField asteroidList={generateAsteroids()}/>
+			}
+			
 			</span>
 			)
     }
 }
 
-export default AsteroidsPage;
+const mapStateToProps = state => {
+    return {
+        showModal: state.AsteroidFieldReducer.showModal,
+    }
+}
+
+export default connect(mapStateToProps, null)(AsteroidsPage);

@@ -54,6 +54,7 @@ class Asteroid extends Component {
 			<MediaQuery maxDeviceWidth={1224}>
 				{(matches) => {
 					if (matches) {
+						// We're on Mobile 
 						if (this.state.exploded) {
 							selectedAsteroidClass = 3;	
 						}
@@ -68,6 +69,7 @@ class Asteroid extends Component {
 								/>;
 					} 
 					else {
+						// We're on a Desktop/Laptop
 						if (this.state.exploded) {
 							selectedAsteroidClass = 2;	
 						}
