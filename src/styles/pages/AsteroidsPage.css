@@ -1,0 +1,8 @@
+.guideText {
+	position: absolute;
+	color: white;
+	font-size: 3rem;
+	top: 50%;
+	left: 45%;
+	z-index: 1;
+}
