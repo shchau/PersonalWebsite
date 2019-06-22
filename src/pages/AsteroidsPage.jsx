@@ -3,6 +3,7 @@ import AsteroidField from '../components/AsteroidsPage/AsteroidField';
 import RewardModal from '../components/AsteroidsPage/RewardModal';
 import { Transition } from 'semantic-ui-react';
 import {connect} from 'react-redux';
+import HTTPFetchUtils from '../utils/HTTPFetchUtils.js';
 import '../styles/pages/AsteroidsPage.css';
 
 
@@ -21,14 +22,34 @@ function generateAsteroids() {
 	return(selectedSpawns);
 }
 
+function stripHTML(html) {
+	let doc = new DOMParser().parseFromString(html, 'text/html');
+	return doc.body.textContent || "";
+}
+
+const randomWikiPagePath = "https://en.wikipedia.org/w/api.php?format=json" 
+			+ "&action=query"
+			+ "&generator=random"
+			+ "&rvprop=content"
+			+ "&grnnamespace=0"
+			+ "&grnlimit=1"
+			+ "&prop=extracts"
+			+ "&exchars=500"
+			+ "&origin=*";
+
+
 class AsteroidsPage extends Component {	
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			visible: true,
+			wikiTitle: "",
+			wikiImage: "",
+			wikiContent: "",
 		};
 		this.textFadeAway = this.textFadeAway.bind(this);
+		this.grabWikipediaPage = this.grabWikipediaPage.bind(this);
 	}
 
 	componentDidMount(){
@@ -36,10 +57,75 @@ class AsteroidsPage extends Component {
 			this.setState({
 				visible: false,
 			});
-		}, 4000);
+		}, 2000);
+		this.grabWikipediaPage();
 	};
 	
+	
+	componentDidUpdate(prevProps) {
+		if (this.props.showModal === false && prevProps.showModal === true) {
+			this.grabWikipediaPage();
+		}
+	}
+	
+	grabWikipediaPage() {
+		this.setState({
+			wikiTitle: "",
+			wikiImage: "",
+			wikiContent: "",
+		});
+		HTTPFetchUtils.getRequest(randomWikiPagePath).then( (httpResponse) => {
+							if (httpResponse.status === 200) {
+								httpResponse.json().then( (results) => {
+									let keys = Object.keys(results.query.pages);
+									let wikiPage = results.query.pages[keys[0]];
+									let wikiTitle = stripHTML(wikiPage.title);
+									let wikiContent = stripHTML(wikiPage.extract);
 
+
+									let urlImgEndpoint = "https://en.wikipedia.org/w/api.php?format=json" 
+														+ "&action=query"
+														+ "&titles=" + wikiPage.title
+														+ "&rvprop=content"
+														+ "&grnnamespace=0"
+														+ "&grnlimit=1"
+														+ "&prop=pageimages"
+														+ "&pithumbsize=900"
+														+ "&origin=*";
+									
+									HTTPFetchUtils.getRequest(urlImgEndpoint).then( (httpResponse) => {
+														if (httpResponse.status === 200) {
+															httpResponse.json().then( (results) => {
+																let keys = Object.keys(results.query.pages);
+																let wikiPage = results.query.pages[keys[0]];
+
+																if(wikiPage.thumbnail) {
+																	let wikiImage = wikiPage.thumbnail.source;
+																	this.setState({
+																		wikiImage: wikiImage,
+																	});
+																}
+															});
+														}
+														else {
+															// Request for image failed 
+															console.log(httpResponse);
+														}
+									}).then( () => {
+									this.setState({
+										wikiTitle: wikiTitle,
+										wikiContent: wikiContent,
+									});
+									});
+								});
+							}
+							else {
+								// Fetch failed. Use default values.
+								console.log(httpResponse);
+							}
+		});	
+	}
+	
 	textFadeAway() {
 		this.setState({
 			visible: false,
@@ -55,7 +141,11 @@ class AsteroidsPage extends Component {
 			
 			{this.props.showModal
 			?
-			<RewardModal/> 
+			<RewardModal 
+				wikiTitle={this.state.wikiTitle} 
+				wikiImage={this.state.wikiImage} 
+				wikiContent={this.state.wikiContent} 
+			/> 
 			:
 			<AsteroidField asteroidList={generateAsteroids()}/>
 			}
