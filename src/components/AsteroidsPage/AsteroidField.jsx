@@ -23,6 +23,7 @@ class AsteroidField extends Component {
 		this.removeAsteroid = this.removeAsteroid.bind(this);
 	}
 	
+	
 	drawAsteroids() {
 		if (this.state.displayedAsteroids.length === 0) {
 			this.props.openModalSignal();
@@ -54,7 +55,7 @@ class AsteroidField extends Component {
 	render() {
 		return(	
 			<span>
-				{[this.drawAsteroids()]}	
+				{[this.drawAsteroids()]}				
 			</span>
 			)
     }

@@ -135,6 +135,7 @@ class AsteroidsPage extends Component {
 	render() {
 		return(	
 			<span>
+			<link rel="prefetch" href="../assets/images/explosion.png" />
 			<Transition visible={this.state.visible} animation="scale" duration = {1000}>
 				<h1 className="guideText" onClick={this.textFadeAway}>Click the asteroids</h1>
 			</Transition>
@@ -149,6 +150,10 @@ class AsteroidsPage extends Component {
 			:
 			<AsteroidField asteroidList={generateAsteroids()}/>
 			}
+			
+			<span className="hidden">
+				<img src={this.state.wikiImage} alt=''/>
+			</span>
 			
 			</span>
 			)
