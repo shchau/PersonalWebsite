@@ -36,7 +36,7 @@ class Asteroid extends Component {
 
 	componentDidUpdate() {
 		if (this.state.exploded) {
-			setTimeout(this.props.removeAsteroid, 100, this.props.id);
+			setTimeout(this.props.removeAsteroid, 200, this.props.id);
 		}
 	}
 
