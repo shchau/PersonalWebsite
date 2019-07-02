@@ -17,10 +17,6 @@
 	margin-top: 18%;
 }
 
-.asteroid::after {
-	background: url('../../assets/images/explosion.png');
-}
-
 .explosion {
 	position: absolute;
 	width: 5rem;
