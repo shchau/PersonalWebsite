@@ -32,6 +32,12 @@ class Asteroid extends Component {
 				circleEntering: false, 
 			});
 		}, 1.000);
+		
+		if (this.props.id === -1) {
+			this.setState({
+				exploded: true,
+			});
+		}
 	}
 
 	componentDidUpdate() {

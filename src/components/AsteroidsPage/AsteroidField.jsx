@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Asteroid from './Asteroid';
 import {connect} from 'react-redux';
 import * as AsteroidFieldActions from '../../actions/AsteroidFieldActions';
+import '../../styles/components/AsteroidField.css';
 
 const spawnLocations = [
 	['10', '15'], ['10', '45'], ['15', '70'],
@@ -57,7 +58,10 @@ class AsteroidField extends Component {
 	render() {
 		return(	
 			<span>
-				{[this.drawAsteroids()]}				
+				{[this.drawAsteroids()]}
+				<span className="offscreen">
+					<Asteroid id={-1} removeAsteroid={this.removeAsteroid}/>
+				</span>
 			</span>
 			)
     }
