@@ -45,11 +45,13 @@ class AsteroidField extends Component {
 
 	removeAsteroid(asteroidID) {
 		let copyArray = [...this.state.displayedAsteroids];
-		let asteroidToRemoveIndex = this.state.displayedAsteroids.indexOf(asteroidID);
-		copyArray.splice(asteroidToRemoveIndex, 1);
-		this.setState({
-			displayedAsteroids: copyArray,
-		});
+		if (copyArray.includes(asteroidID)) {
+			let asteroidToRemoveIndex = this.state.displayedAsteroids.indexOf(asteroidID);
+			copyArray.splice(asteroidToRemoveIndex, 1);
+			this.setState({
+				displayedAsteroids: copyArray,
+			});
+		}
 	}
 
 	render() {
