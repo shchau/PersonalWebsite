@@ -4,6 +4,7 @@ import SideBar from './components/Sidebar';
 import HomePage from './pages/HomePage';
 import AboutMePage from './pages/AboutMePage';
 import AsteroidsPage from './pages/AsteroidsPage';
+import PathFinderPage from './pages/PathFinderPage';
 import NotFound from './pages/NotFound';
 import './styles/spaceBG/spaceBG.css';
 import './App.css';
@@ -23,6 +24,7 @@ class App extends Component {
 						<Route exact path="/Home" component={HomePage}/>
 						<Route exact path="/AboutMe" component={AboutMePage}/>
 						<Route exact path="/Asteroids" component={AsteroidsPage}/>
+						<Route exact path="/PathFinder" component={PathFinderPage}/>
 						<Route component={NotFound} />
 					</Switch>
 				</BrowserRouter>	

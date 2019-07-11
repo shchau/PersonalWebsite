@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import * as AsteroidFieldActions from '../../actions/AsteroidFieldActions';
 import { Image, Modal, TransitionablePortal } from 'semantic-ui-react';
-import '../../styles/components/RewardModal.css';
+import '../../styles/components/AsteroidsPage/RewardModal.css';
 
 class RewardModal extends Component {	
 
@@ -69,6 +70,14 @@ const mapDispatchToProps = dispatch => {
             return dispatch(AsteroidFieldActions.closeModal());
         },
     }
+}
+
+RewardModal.propTypes = {
+	wikiTitle: PropTypes.string.isRequired,
+	wikiContent: PropTypes.string,
+	wikiImage: PropTypes.string,
+	showModal: PropTypes.bool.isRequired,
+	closeModalSignal: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RewardModal);

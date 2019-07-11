@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Asteroid from './Asteroid';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import * as AsteroidFieldActions from '../../actions/AsteroidFieldActions';
-import '../../styles/components/AsteroidField.css';
+import '../../styles/components/AsteroidsPage/AsteroidField.css';
 
 const spawnLocations = [
 	['10', '15'], ['10', '45'], ['15', '70'],
@@ -73,6 +74,11 @@ const mapDispatchToProps = dispatch => {
             return dispatch(AsteroidFieldActions.openModal());
         }
     }
+}
+
+AsteroidField.propTypes = {
+	asteroidList: PropTypes.array.isRequired,
+	openModalSignal: PropTypes.func.isRequired,
 }
 
 export default connect(null, mapDispatchToProps)(AsteroidField);

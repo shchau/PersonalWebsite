@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import posed from 'react-pose';
+import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import '../../styles/components/Asteroid.css';
+import '../../styles/components/AsteroidsPage/Asteroid.css';
 
 const Circle = posed.div({
 	small: {
@@ -93,6 +94,10 @@ class Asteroid extends Component {
 			</MediaQuery>
 			)
     }
+}
+
+Asteroid.propTypes = {
+	id: PropTypes.number.isRequired,
 }
 
 export default Asteroid;

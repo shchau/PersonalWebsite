@@ -1,0 +1,10 @@
+grid-container {
+	display: grid;
+	grid-gap: 10px;
+	margin: 1%;
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 20px;
+	height: 80vh;
+	background-color: gray;
+}

@@ -41,6 +41,11 @@ class SideBar extends Component {
 							Asteroid Field
 						</Menu.Item>
 						
+						<Menu.Item as={NavLink} to="/PathFinder" onClick={this.handleSidebarVisibility}>
+							<Icon name='sitemap' />
+							Path Finder
+						</Menu.Item>						
+						
 						<Menu.Item as={NavLink} to="NotFound" onClick={this.handleSidebarVisibility}>
 							<Icon name='boxes' />
 							404

@@ -1,19 +1,18 @@
 const initialState = {
 	start: false,
-	startingPoint: 0,
-	drawInstructions: "M 40, 10 L 90, 35",
+	grid: [],
 };
 
 export default function PathFinderReducer(state=initialState, action) {
 	switch (action.type) {
 		case "START":
 			return Object.assign({}, state, {
-				startingPoint: action.payload.startingPoint
+				start: true,
 			});
 
-		case "SET_PATH":
+		case "SET_GRID":
 			return Object.assign({}, state, {
-				drawInstructions: action.payload.drawInstructions
+				grid: action.payload.grid,
 			});			
 
 		default:
