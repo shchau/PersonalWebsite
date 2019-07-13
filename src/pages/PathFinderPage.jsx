@@ -19,11 +19,23 @@ import '../styles/pages/PathFinderPage.css';
 //	| 0 2  2 2 0 |
 //	| 0 0  0 0 0 |
 
+let numRows,
+	numCols,
+	numObstacles;
 
-const numRows = 15,
-	numCols = 30,
-	numObstacles = 7,
-	startPos = [Math.floor(numRows/2), 0],
+if (window.innerWidth > 768) {
+	numRows = 15;
+	numCols = 30;
+	numObstacles = 12;
+}
+else {
+	numRows = 15;
+	numCols = 10;
+	numObstacles = 7;
+}
+
+
+const startPos = [Math.floor(numRows/2), 0],
 	endPos = [Math.floor(numRows/2)-1, numCols-1];
 	
 const gridRows = "1fr ".repeat(numRows);
