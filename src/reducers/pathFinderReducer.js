@@ -18,7 +18,6 @@ export default function PathFinderReducer(state=initialState, action) {
 			});			
 
 		case "CHANGE_TO_OBSTACLE":
-			console.log("ss", state.grid[action.payload.row][action.payload.col]);
 			return update(state, {
 				grid: {
 					[action.payload.row]: {
@@ -28,7 +27,6 @@ export default function PathFinderReducer(state=initialState, action) {
 			});
 
 		case "CHANGE_TO_FREE":
-			console.log("ss", state.grid[action.payload.row][action.payload.col]);
 			return update(state, {
 				grid: {
 					[action.payload.row]: {
