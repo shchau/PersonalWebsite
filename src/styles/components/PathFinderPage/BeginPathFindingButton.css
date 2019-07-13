@@ -1,4 +1,5 @@
 .startButton {
-	position: absolute;
-	left: 45%;
+	display: flex !important;
+	justify-content: center;
+	margin: 0 auto !important;
 }

@@ -22,55 +22,12 @@ import '../styles/pages/PathFinderPage.css';
 
 const numRows = 15,
 	numCols = 30,
-	numObstacles = 25,
+	numObstacles = 7,
 	startPos = [Math.floor(numRows/2), 0],
 	endPos = [Math.floor(numRows/2)-1, numCols-1];
 	
 const gridRows = "1fr ".repeat(numRows);
 const gridCols = "1fr ".repeat(numCols);
-
-let gridCopy = [];
-
-function generateGridCells() {
-	let gridItems = [],
-		obstacles = selectObstacleLocations(),
-		cellID;
-	
-	for (let row = 0; row < numRows; row++) {
-		gridCopy[row] = []
-		for (let col = 0; col < numCols; col++) {
-			cellID = row + ' ' + col;
-			if (obstacles.includes([row, col].toString())) {
-				gridItems.push(<GridCell cellID={cellID} 
-								status={-1} 
-								key={cellID}>
-								</GridCell>);
-				gridCopy[row][col] = -1;
-			}
-			else if ([row,col].toString() === startPos.toString()) {
-				gridItems.push(<GridCell cellID={cellID} 
-								status={1}
-								key={cellID}>
-								</GridCell>);
-				gridCopy[row][col] = 1;
-			}
-			else if ([row, col].toString() === endPos.toString()){
-				gridItems.push(<GridCell cellID={cellID} 
-								status={3}
-								key={cellID}>
-								</GridCell>);
-				gridCopy[row][col] = 3;
-			}
-			else {
-				gridItems.push(<GridCell cellID={cellID} status={2} key={cellID}></GridCell>);
-				gridCopy[row][col] = 0;
-			}
-		}
-	}
-	return(
-		gridItems
-	);
-}
 
 function selectObstacleLocations() {
 	let possibleObstacleLocations = [];
@@ -82,9 +39,11 @@ function selectObstacleLocations() {
 	possibleObstacleLocations[startPos[0]].splice(possibleObstacleLocations[startPos[0]].indexOf(startPos[1]), 1);
 	possibleObstacleLocations[endPos[0]].splice(possibleObstacleLocations[endPos[0]].indexOf(endPos[1]), 1);	
 	
-	// This is a bug in Chrome that will likely not be fixed. So we have to do this
-	// to see the correct values in the possibleObstacleLocations array.
-	//console.log("pOL", JSON.parse(JSON.stringify(possibleObstacleLocations)));
+	// Trying to console log results in the array AFTER it's been modified, 
+	// this is a bug in Chrome that will likely not be fixed. 
+	// So we have to do this JSON stuff to see the correct values in the 
+	// possibleObstacleLocations array at this moment in time.
+	// console.log("pOL", JSON.parse(JSON.stringify(possibleObstacleLocations)));
 	
 	let selectedObstacleLocations = [];
 	let currentNumObstacles = 0;
@@ -111,11 +70,60 @@ class PathFinderPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			grid: generateGridCells(),
+			grid: this.generateGrid(),
 		};
-		this.props.setGrid(gridCopy);
+		this.generateGrid = this.generateGrid.bind(this);
+		this.generateGridCells = this.generateGridCells.bind(this);
 	}
 	
+	generateGrid() {
+		let gridCopy = [],
+			obstacles = selectObstacleLocations();
+			
+		for (let row = 0; row < numRows; row++) {
+			gridCopy[row] = []
+			for (let col = 0; col < numCols; col++) {
+				let position = [row, col];		
+				if (obstacles.includes(position.toString())) {
+					gridCopy[row][col] = -1;
+				}
+				else if (position.toString() === startPos.toString()) {
+					gridCopy[row][col] = 1;
+				}
+				else if (position.toString() === endPos.toString()){
+					gridCopy[row][col] = 3;
+				}
+				else {
+					gridCopy[row][col] = 0;
+				}
+			}
+		}	
+
+		this.props.setGrid(gridCopy).then(() => {
+			this.generateGridCells();
+		});
+	}
+
+	generateGridCells() {
+		let cellID,
+			gridItems = [];
+		for (let row = 0; row < numRows; row++) {
+			for (let col = 0; col < numCols; col++) {
+				cellID = row + ' ' + col;
+				let position = [row, col];
+					gridItems.push(<GridCell cellID={cellID} 
+									status={this.props.grid[row][col]} 
+									key={cellID}
+									position={position}
+									>
+									</GridCell>);					
+			}
+		}
+		this.setState({
+			grid: gridItems,
+		});
+	}
+
 	render() {
 		return(	
 			<span>
@@ -131,6 +139,12 @@ class PathFinderPage extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+    return {
+        grid: state.PathFinderReducer.grid,
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         setGrid: (grid) => {
@@ -139,4 +153,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(PathFinderPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PathFinderPage);
