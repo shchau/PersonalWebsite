@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import '../../styles/components/PathFinderPage/GridCell.css';
 
 const statuses = {
-	"0": {'backgroundColor': 'white'}, 		// unsearched
-	"1": {'backgroundColor': 'lightgreen'}, // startingCell
-	"2": {'backgroundColor': 'lightblue'}, 	// searching
-	"3": {'backgroundColor': 'red'}, 		// endingCell
-	"-1": {'backgroundColor': 'grey'}, 		// obstacle
+	"0": {'backgroundColor': 'white'}, 			// unsearched
+	"1": {'backgroundColor': 'lightgreen'}, 	// startingCell
+	"2": {'backgroundColor': 'lightblue'}, 		// searching
+	"3": {'backgroundColor': 'red'}, 			// endingCell
+	"-1": {'backgroundColor': 'darkslategrey'}, // obstacle
 }
 
 class GridCell extends Component {	
