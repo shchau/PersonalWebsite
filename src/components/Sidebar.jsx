@@ -6,57 +6,41 @@ import '../styles/components/Sidebar.css';
 
 class SideBar extends Component {	
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			visible: false,
-		}
-		
-		this.handleSidebarVisibility = this.handleSidebarVisibility.bind(this);
-	
-	}
-
-	handleSidebarVisibility() {
-		this.setState({
-			visible: !this.state.visible,
-		});
-	}
-
 	render() {
 		return( 
 			<div>	
-					<Sidebar as={Menu} animation='overlay' icon='labeled' inverted vertical visible={this.state.visible} width='thin'>
-						<Menu.Item as={NavLink} to="/Home" onClick={this.handleSidebarVisibility}>
+					<Sidebar as={Menu} animation='overlay' icon='labeled' inverted vertical visible={this.props.visible} width='thin'>
+						<Menu.Item as={NavLink} to="/Home" onClick={this.props.handleSidebarVisibility}>
 							<Icon name='home' />
 							Home
 						</Menu.Item>
 
-						<Menu.Item as={NavLink} to="/AboutMe" onClick={this.handleSidebarVisibility}>
+						<Menu.Item as={NavLink} to="/AboutMe" onClick={this.props.handleSidebarVisibility}>
 							<Icon name='user circle' />
 							About
 						</Menu.Item>
 						
-						<Menu.Item as={NavLink} to="/Asteroids" onClick={this.handleSidebarVisibility}>
-							<Icon name='sitemap' />
+						<Menu.Item as={NavLink} to="/Asteroids" onClick={this.props.handleSidebarVisibility}>
+							<Icon name='circle' />
 							Asteroid Field
 						</Menu.Item>
 						
-						<Menu.Item as={NavLink} to="/PathFinder" onClick={this.handleSidebarVisibility}>
-							<Icon name='sitemap' />
+						<Menu.Item as={NavLink} to="/PathFinder" onClick={this.props.handleSidebarVisibility}>
+							<Icon name='grid layout' />
 							Path Finder
 						</Menu.Item>						
 						
-						<Menu.Item as={NavLink} to="NotFound" onClick={this.handleSidebarVisibility}>
+						<Menu.Item as={NavLink} to="NotFound" onClick={this.props.handleSidebarVisibility}>
 							<Icon name='boxes' />
 							404
 						</Menu.Item>
 						
 					</Sidebar>
 					<Button.Group className="sidebarVisibilityButtonContainer">
-						<Button disabled={this.state.visible} onClick={this.handleSidebarVisibility}>
+						<Button disabled={this.props.visible} onClick={this.props.handleSidebarVisibility}>
 							Show sidebar
 						</Button>
-						<Button disabled={!this.state.visible} onClick={this.handleSidebarVisibility}>
+						<Button disabled={!this.props.visible} onClick={this.props.handleSidebarVisibility}>
 							Hide sidebar
 						</Button>
 					</Button.Group>
