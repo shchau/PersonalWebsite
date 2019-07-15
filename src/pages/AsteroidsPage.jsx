@@ -120,7 +120,6 @@ class AsteroidsPage extends Component {
 								});
 							}
 							else {
-								// Fetch failed. Use default values.
 								console.log(httpResponse);
 							}
 		});	
@@ -135,7 +134,7 @@ class AsteroidsPage extends Component {
 	render() {
 		return(	
 			<span>
-			<Transition visible={this.state.visible} animation="scale" duration = {1000}>
+			<Transition visible={true} animation="scale" duration = {1000}>
 				<h1 className="guideText" onClick={this.textFadeAway}>Click the asteroids</h1>
 			</Transition>
 			
