@@ -108,9 +108,6 @@ class AStarSearchAlgorithm extends Component {
 			
 				openList.push(neighbour);
 				
-				if ((neighbour.pos.toString() !== this.props.endPos.toString()) && (neighbour.pos.toString() !== this.props.startPos.toString())) {
-					setTimeout(this.props.changeGridCell, 0.05, neighbour.pos, 2);
-				}
 			}
 		}
 		
