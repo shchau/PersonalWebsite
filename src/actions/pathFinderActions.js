@@ -23,26 +23,16 @@ export const setGrid = (grid) => {
 	}
 }
 
-export const changeToObstacle = (position) => {
+export const changeGridCell = (position, newValue) => {
 	return (dispatch) => {
 		return dispatch({
-			type: 'CHANGE_TO_OBSTACLE',
+			type: 'CHANGE_GRID_CELL',
 			payload: {
 				row: position[0],
 				col: position[1],
+				newValue: newValue,
 			}
 		})
 	}
 }
 
-export const changeToFree = (position) => {
-	return (dispatch) => {
-		return dispatch({
-			type: 'CHANGE_TO_FREE',
-			payload: {
-				row: position[0],
-				col: position[1],
-			}
-		})
-	}
-}

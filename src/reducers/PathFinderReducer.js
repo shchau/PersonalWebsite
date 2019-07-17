@@ -17,25 +17,14 @@ export default function PathFinderReducer(state=initialState, action) {
 				grid: action.payload.grid,
 			});			
 
-		case "CHANGE_TO_OBSTACLE":
+		case "CHANGE_GRID_CELL":
 			return update(state, {
 				grid: {
 					[action.payload.row]: {
-						[action.payload.col]: {$set: -1},
+						[action.payload.col]: {$set: action.payload.newValue},
 					}
 				}
 			});
-
-		case "CHANGE_TO_FREE":
-			return update(state, {
-				grid: {
-					[action.payload.row]: {
-						[action.payload.col]: {$set: 0},
-					}
-				}
-			});
-
-
 
 		default:
 			return state;

@@ -35,13 +35,13 @@ class GridCell extends Component {
 	changeBetweenFreeAndObstacle(){
 		let row = this.props.position[0],
 			col = this.props.position[1];
-			
 		if (this.props.grid[row][col] === 0) {
-			this.props.changeToObstacle(this.props.position);
+			this.props.changeGridCell(this.props.position, -1);
 		}
 		else if (this.props.grid[row][col] === -1) {
-			this.props.changeToFree(this.props.position);
+			this.props.changeGridCell(this.props.position, 0);
 		}
+		console.log("Changed");
 	}
 	
 	render() {
@@ -63,8 +63,6 @@ class GridCell extends Component {
 GridCell.propTypes = {
 	cellID: PropTypes.string.isRequired,
 	status: PropTypes.number.isRequired,
-	changeToObstacle: PropTypes.func.isRequired,
-	changeToFree: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -75,12 +73,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeToObstacle: (position) => {
-            return dispatch(PathFinderActions.changeToObstacle(position));
+        changeGridCell: (position, newValue) => {
+            return dispatch(PathFinderActions.changeGridCell(position, newValue));
         },
-		changeToFree: (position) => {
-			return dispatch(PathFinderActions.changeToFree(position));
-		},
     }
 }
 

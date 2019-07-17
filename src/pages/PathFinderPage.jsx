@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import GridCell from '../components/PathFinderPage/GridCell.jsx';
 import BeginPathFindingButton from '../components/PathFinderPage/BeginPathFindingButton';
+import AStarSearchAlgorithm from '../components/PathFinderPage/AStarSearchAlgorithm';
+
 import * as PathFinderActions from '../actions/PathFinderActions';
 import '../styles/pages/PathFinderPage.css';
 
@@ -50,12 +52,6 @@ function selectObstacleLocations() {
 	
 	possibleObstacleLocations[startPos[0]].splice(possibleObstacleLocations[startPos[0]].indexOf(startPos[1]), 1);
 	possibleObstacleLocations[endPos[0]].splice(possibleObstacleLocations[endPos[0]].indexOf(endPos[1]), 1);	
-	
-	// Trying to console log results in the array AFTER it's been modified, 
-	// this is a bug in Chrome that will likely not be fixed. 
-	// So we have to do this JSON stuff to see the correct values in the 
-	// possibleObstacleLocations array at this moment in time.
-	// console.log("pOL", JSON.parse(JSON.stringify(possibleObstacleLocations)));
 	
 	let selectedObstacleLocations = [];
 	let currentNumObstacles = 0;
@@ -146,6 +142,7 @@ class PathFinderPage extends Component {
 				{this.state.grid}
 				</grid-container>
 				<BeginPathFindingButton/>
+				<AStarSearchAlgorithm startPos={startPos} endPos={endPos}/>
 			</span>
 		)
 	}
