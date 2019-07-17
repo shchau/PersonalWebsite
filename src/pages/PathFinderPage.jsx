@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import GridCell from '../components/PathFinderPage/GridCell.jsx';
-import BeginPathFindingButton from '../components/PathFinderPage/BeginPathFindingButton';
+import PathFindingButton from '../components/PathFinderPage/PathFindingButton';
 import AStarSearchAlgorithm from '../components/PathFinderPage/AStarSearchAlgorithm';
 
 import * as PathFinderActions from '../actions/PathFinderActions';
@@ -12,7 +12,8 @@ import '../styles/pages/PathFinderPage.css';
 //  0 -- Open space 
 //  1 -- Starting Cell
 //  2 -- Explored Cell
-//  3 -- Ending Cell
+//  3 -- Final Path Cell
+//  4 -- Ending Cell
 // -1 -- Obstacle
 //
 //	| 0 0 -1 0 0 |
@@ -28,7 +29,7 @@ let numRows,
 if (window.innerWidth > 768) {
 	numRows = 15;
 	numCols = 30;
-	numObstacles = 12;
+	numObstacles = 30;
 }
 else {
 	numRows = 15;
@@ -141,7 +142,7 @@ class PathFinderPage extends Component {
 				}}>
 				{this.state.grid}
 				</grid-container>
-				<BeginPathFindingButton/>
+				<PathFindingButton/>
 				{this.props.start && 
 				<AStarSearchAlgorithm startPos={startPos} endPos={endPos}/>}
 			</span>

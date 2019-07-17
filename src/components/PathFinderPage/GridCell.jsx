@@ -25,6 +25,7 @@ class GridCell extends Component {
 	shouldComponentUpdate(nextProps, nextState) {
 		let row = this.props.position[0],
 			col = this.props.position[1];
+		
 		if(nextProps.grid[row][col] !== this.props.grid[row][col]) {
 			return (true);
 		}

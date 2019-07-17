@@ -55,7 +55,7 @@ class AStarSearchAlgorithm extends Component {
 			let pos = [results[i][0], results[i][1]];
 			setTimeout(this.props.changeGridCell, 0.500, pos, 3);
 		}
-		setTimeout(this.props.finishPathFinding, 1.000);		
+		setTimeout(this.props.finishPathFinding, 1.000);	
 	}
 
 	beginSearch() {
