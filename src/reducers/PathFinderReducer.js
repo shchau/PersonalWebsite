@@ -3,6 +3,7 @@ import update from 'react-addons-update';
 const initialState = {
 	start: false,
 	grid: [],
+	finished: false,
 };
 
 export default function PathFinderReducer(state=initialState, action) {
@@ -10,7 +11,15 @@ export default function PathFinderReducer(state=initialState, action) {
 		case "START":
 			return Object.assign({}, state, {
 				start: true,
+				finished: false,
 			});
+
+		case "FINISH":
+			return Object.assign({}, state, {
+				start: false,
+				finished: true,
+			});
+		
 
 		case "SET_GRID":
 			return Object.assign({}, state, {
@@ -18,14 +27,19 @@ export default function PathFinderReducer(state=initialState, action) {
 			});			
 
 		case "CHANGE_GRID_CELL":
-			return update(state, {
-				grid: {
-					[action.payload.row]: {
-						[action.payload.col]: {$set: action.payload.newValue},
+			if (!state.finished) {
+				return update(state, {
+					grid: {
+						[action.payload.row]: {
+							[action.payload.col]: {$set: action.payload.newValue},
+						}
 					}
-				}
-			});
-
+				});
+			}
+			else {
+				return {};
+			}
+			
 		default:
 			return state;
 	}

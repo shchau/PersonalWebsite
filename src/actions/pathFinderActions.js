@@ -1,7 +1,17 @@
-export const setStartingPoint = (index) => {
+export const startPathFinding = () => {
 	return (dispatch) => {
 		return dispatch({
 			type: 'START',
+			payload: {
+			}
+		})
+	}
+}
+
+export const finishPathFinding = () => {
+	return (dispatch) => {
+		return dispatch({
+			type: 'FINISH',
 			payload: {
 			}
 		})

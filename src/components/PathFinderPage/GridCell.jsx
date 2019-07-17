@@ -8,7 +8,8 @@ const statuses = {
 	"0": {'backgroundColor': 'white'}, 			// unsearched
 	"1": {'backgroundColor': 'lightgreen'}, 	// startingCell
 	"2": {'backgroundColor': 'lightblue'}, 		// searching
-	"3": {'backgroundColor': 'red'}, 			// endingCell
+	"3": {'backgroundColor': 'blue'},			// finalPath
+	"4": {'backgroundColor': 'red'}, 			// endingCell
 	"-1": {'backgroundColor': 'darkslategrey'}, // obstacle
 }
 
@@ -33,15 +34,16 @@ class GridCell extends Component {
 	}
 	
 	changeBetweenFreeAndObstacle(){
-		let row = this.props.position[0],
-			col = this.props.position[1];
-		if (this.props.grid[row][col] === 0) {
-			this.props.changeGridCell(this.props.position, -1);
+		if(this.props.start === false) {
+			let row = this.props.position[0],
+				col = this.props.position[1];
+			if (this.props.grid[row][col] === 0) {
+				this.props.changeGridCell(this.props.position, -1);
+			}
+			else if (this.props.grid[row][col] === -1) {
+				this.props.changeGridCell(this.props.position, 0);
+			}
 		}
-		else if (this.props.grid[row][col] === -1) {
-			this.props.changeGridCell(this.props.position, 0);
-		}
-		console.log("Changed");
 	}
 	
 	render() {
@@ -67,6 +69,7 @@ GridCell.propTypes = {
 
 const mapStateToProps = state => {
     return {
+		start: state.PathFinderReducer.start,
         grid: state.PathFinderReducer.grid,
     }
 }

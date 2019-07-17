@@ -49,13 +49,20 @@ class AStarSearchAlgorithm extends Component {
 	}
 	
 	componentDidMount() {
-		this.beginSearch();
+		let results = this.beginSearch();
+		
+		for (let i = 0; i < results.length-1; i++) {
+			let pos = [results[i][0], results[i][1]];
+			setTimeout(this.props.changeGridCell, 0.500, pos, 3);
+		}
+		setTimeout(this.props.finishPathFinding, 1.000);		
 	}
 
 	beginSearch() {
 		let startingNode = new node(this.props.startPos[0], this.props.startPos[1]);
 		let openList = [];
-			
+		
+		startingNode.closed = true;
 		openList.push(startingNode);
 	
 		while (openList.length > 0) {
@@ -75,7 +82,6 @@ class AStarSearchAlgorithm extends Component {
 					returnPath.push(curr.pos);
 					curr = curr.parent;
 				}
-				console.log("Done", returnPath.reverse());
 				return returnPath.reverse();
 			}
 			
@@ -102,6 +108,9 @@ class AStarSearchAlgorithm extends Component {
 			
 				openList.push(neighbour);
 				
+				if ((neighbour.pos.toString() !== this.props.endPos.toString()) && (neighbour.pos.toString() !== this.props.startPos.toString())) {
+					setTimeout(this.props.changeGridCell, 0.05, neighbour.pos, 2);
+				}
 			}
 		}
 		
@@ -116,22 +125,31 @@ class AStarSearchAlgorithm extends Component {
 
 		// West
 		if (this.state.gridNodes[row-1] && this.state.gridNodes[row-1][col]) {
-			neighbours.push(this.state.gridNodes[row-1][col]);
+			// Only add to neighbours to check if not an obstacle
+			if(this.props.grid[row-1][col] !== -1) {
+				neighbours.push(this.state.gridNodes[row-1][col]);
+			}
 		}
 		
 		// East
 		if (this.state.gridNodes[row+1] && this.state.gridNodes[row+1][col]) {
-			neighbours.push(this.state.gridNodes[row+1][col]);
+			if (this.props.grid[row+1][col] !== -1) {
+				neighbours.push(this.state.gridNodes[row+1][col]);
+			}
 		}
 		
 		// South
 		if (this.state.gridNodes[row] && this.state.gridNodes[row][col-1]) {
-			neighbours.push(this.state.gridNodes[row][col-1]);
+			if (this.props.grid[row][col-1] !== -1) {
+				neighbours.push(this.state.gridNodes[row][col-1]);
+			}
 		}
 	
 		// North
 		if (this.state.gridNodes[row] && this.state.gridNodes[row][col+1]) {
-			neighbours.push(this.state.gridNodes[row][col+1]);
+			if (this.props.grid[row][col+1] !== -1) {	
+				neighbours.push(this.state.gridNodes[row][col+1]);
+			}
 		}
 
 		return neighbours;		
@@ -156,6 +174,10 @@ const mapDispatchToProps = dispatch => {
         changeGridCell: (position, newValue) => {
             return dispatch(PathFinderActions.changeGridCell(position, newValue));
         },
+		
+		finishPathFinding: () => {
+			return dispatch(PathFinderActions.finishPathFinding());
+		},
     }
 }
 

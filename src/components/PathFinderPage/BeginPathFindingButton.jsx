@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import * as PathFinderActions from '../../actions/PathFinderActions';
 import { Button } from 'semantic-ui-react';
 import '../../styles/components/PathFinderPage/BeginPathFindingButton.css';
 
@@ -7,17 +9,7 @@ class BeginPathFindingButton extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			pathFindingStarted: false,
 		};
-		
-		this.startPathFinding = this.startPathFinding.bind(this);
-	}
-	
-	
-	startPathFinding() {
-		this.setState({
-			pathFindingStarted: true,
-		});
 	}
 	
 	render() {
@@ -26,10 +18,10 @@ class BeginPathFindingButton extends Component {
 				inverted 
 				size="massive" 
 				color="blue" 
-				active={this.state.pathFindingStarted}
-				disabled={this.state.pathFindingStarted}
-				loading={this.state.pathFindingStarted}
-				onClick={this.startPathFinding}
+				active={this.props.start}
+				disabled={this.props.start}
+				loading={this.props.start}
+				onClick={this.props.startPathFinding}
 			>				
 				START 
 			</Button>
@@ -37,4 +29,18 @@ class BeginPathFindingButton extends Component {
 	}
 }
 
-export default BeginPathFindingButton;
+const mapStateToProps = state => {
+    return {
+		start: state.PathFinderReducer.start,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        startPathFinding: () => {
+            return dispatch(PathFinderActions.startPathFinding());
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BeginPathFindingButton);

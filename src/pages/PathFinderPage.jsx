@@ -99,7 +99,7 @@ class PathFinderPage extends Component {
 					gridCopy[row][col] = 1;
 				}
 				else if (position.toString() === endPos.toString()){
-					gridCopy[row][col] = 3;
+					gridCopy[row][col] = 4;
 				}
 				else {
 					gridCopy[row][col] = 0;
@@ -142,7 +142,8 @@ class PathFinderPage extends Component {
 				{this.state.grid}
 				</grid-container>
 				<BeginPathFindingButton/>
-				<AStarSearchAlgorithm startPos={startPos} endPos={endPos}/>
+				{this.props.start && 
+				<AStarSearchAlgorithm startPos={startPos} endPos={endPos}/>}
 			</span>
 		)
 	}
@@ -150,6 +151,7 @@ class PathFinderPage extends Component {
 
 const mapStateToProps = state => {
     return {
+		start: state.PathFinderReducer.start,
         grid: state.PathFinderReducer.grid,
     }
 }

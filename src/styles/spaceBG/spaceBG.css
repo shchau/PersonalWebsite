@@ -70,8 +70,3 @@
   -webkit-animation:move-clouds-back 200s linear infinite;
   animation:move-clouds-back 200s linear infinite;
 }
-
-.sidebarPusher {
-	width: 100vw;
-	height: 100vh;
-}
