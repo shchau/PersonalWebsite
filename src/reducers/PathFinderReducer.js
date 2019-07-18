@@ -3,6 +3,7 @@ import update from 'react-addons-update';
 const initialState = {
 	start: false,
 	grid: [],
+	allowGridChanges: true,
 };
 
 export default function PathFinderReducer(state=initialState, action) {
@@ -10,6 +11,7 @@ export default function PathFinderReducer(state=initialState, action) {
 		case "START":
 			return Object.assign({}, state, {
 				start: true,
+				allowGridChanges: false,
 			});
 
 		case "FINISH":
@@ -17,6 +19,10 @@ export default function PathFinderReducer(state=initialState, action) {
 				start: false,
 			});
 		
+		case "ALLOW_GRID_CHANGES":
+			return Object.assign({}, state, {
+				allowGridChanges: true,
+			});		
 
 		case "SET_GRID":
 			return Object.assign({}, state, {

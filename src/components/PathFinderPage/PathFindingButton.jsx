@@ -27,6 +27,7 @@ class PathFindingButton extends Component {
 		
 		else if (this.state.buttonText === "RESET") {
 			this.props.setGrid(this.state.gridCopy);
+			this.props.allowGridChanges();
 			this.setState({
 				buttonText: "START",
 			});
@@ -65,6 +66,10 @@ const mapDispatchToProps = dispatch => {
 		
 		setGrid: (grid) => {
 			return dispatch(PathFinderActions.setGrid(grid));
+		},
+		
+		allowGridChanges: () => {
+			return dispatch(PathFinderActions.allowGridChanges());
 		},
     }
 }

@@ -35,7 +35,7 @@ class GridCell extends Component {
 	}
 	
 	changeBetweenFreeAndObstacle(){
-		if(this.props.start === false) {
+		if (this.props.allowGridChanges === true) {
 			let row = this.props.position[0],
 				col = this.props.position[1];
 			if (this.props.grid[row][col] === 0) {
@@ -72,6 +72,7 @@ const mapStateToProps = state => {
     return {
 		start: state.PathFinderReducer.start,
         grid: state.PathFinderReducer.grid,
+		allowGridChanges: state.PathFinderReducer.allowGridChanges,
     }
 }
 

@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as PathFinderActions from '../../actions/PathFinderActions';
 
-// Every node will use the following format
-// 
-//  gridValues[][] = {int f, int g, int h, int cost, bool visited, bool closed, array parent} 
-
 function BinaryHeap(scoreFunction) {
   this.content = [];
   this.scoreFunction = scoreFunction;
@@ -164,6 +160,7 @@ class AStarSearchAlgorithm extends Component {
 			let pos = [results[i][0], results[i][1]];
 			setTimeout(this.props.changeGridCell, 0.500, pos, 3);
 		}
+		setTimeout(this.props.changeGridCell, 1.000, this.props.endPos, 1);		
 		setTimeout(this.props.finishPathFinding, 1.000);	
 	}
 

@@ -18,6 +18,16 @@ export const finishPathFinding = () => {
 	}
 }
 
+export const allowGridChanges = () => {
+	return (dispatch) => {
+		return dispatch({
+			type: 'ALLOW_GRID_CHANGES',
+			payload: {
+			}
+		})
+	}
+}
+
 export const setGrid = (grid) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
