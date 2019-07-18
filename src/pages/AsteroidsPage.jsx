@@ -134,7 +134,7 @@ class AsteroidsPage extends Component {
 	render() {
 		return(	
 			<span>
-			<Transition visible={true} animation="scale" duration = {1000}>
+			<Transition visible={this.state.visible} animation="scale" duration = {1000}>
 				<h1 className="guideText" onClick={this.textFadeAway}>Click the asteroids</h1>
 			</Transition>
 			
