@@ -35,10 +35,16 @@ class PathFindingButton extends Component {
 	}
 	
 	render() {
+		let buttonSize = "massive";
+		if (window.innerWidth <= 1224) {
+			buttonSize = "large";
+		}
+		
+		
 		return(	
 			<Button className="startButton" 
 				inverted 
-				size="massive" 
+				size={buttonSize}
 				color="blue" 
 				active={this.props.start}
 				disabled={this.props.start}

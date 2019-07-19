@@ -4,6 +4,7 @@ const initialState = {
 	start: false,
 	grid: [],
 	allowGridChanges: true,
+	displayFailedMessage: false,
 };
 
 export default function PathFinderReducer(state=initialState, action) {

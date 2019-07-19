@@ -156,11 +156,16 @@ class AStarSearchAlgorithm extends Component {
 	componentDidMount() {
 		let results = this.beginSearch();
 		
-		for (let i = 0; i < results.length-1; i++) {
-			let pos = [results[i][0], results[i][1]];
-			setTimeout(this.props.changeGridCell, 0.500, pos, 3);
+		if (results.length > 0) {
+			for (let i = 0; i < results.length-1; i++) {
+				let pos = [results[i][0], results[i][1]];
+				setTimeout(this.props.changeGridCell, 0.500, pos, 3);
+			}
+			setTimeout(this.props.changeGridCell, 1.000, this.props.endPos, 1);	
+		}		
+		else {
+			this.props.displayFailedMessage();
 		}
-		setTimeout(this.props.changeGridCell, 1.000, this.props.endPos, 1);		
 		setTimeout(this.props.finishPathFinding, 1.000);	
 	}
 
@@ -185,8 +190,11 @@ class AStarSearchAlgorithm extends Component {
 				return returnPath.reverse();
 			}
 			
-			currentNode.closed = true;
+			if (currentNode.pos.toString() !== startingNode.pos.toString()) {
+				setTimeout(this.props.changeGridCell, 0.500, currentNode.pos, 2);
+			}
 			
+			currentNode.closed = true;
 			let neighbours = this.getNeighbours(currentNode);
 			
 			for (let i = 0; i < neighbours.length; i++) {
@@ -254,9 +262,15 @@ class AStarSearchAlgorithm extends Component {
 		return neighbours;		
 	}
 
+	textFadeAway() {
+		this.setState({
+			displayFailureMessage: false,
+		});
+	}
+
 	render() {
 		return(
-			<span> 
+			<span>
 			</span>
 		)
     }

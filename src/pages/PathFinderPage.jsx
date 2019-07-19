@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { Transition } from 'semantic-ui-react';
 import GridCell from '../components/PathFinderPage/GridCell.jsx';
 import PathFindingButton from '../components/PathFinderPage/PathFindingButton';
 import AStarSearchAlgorithm from '../components/PathFinderPage/AStarSearchAlgorithm';
-
 import * as PathFinderActions from '../actions/PathFinderActions';
 import '../styles/pages/PathFinderPage.css';
 
@@ -80,9 +80,11 @@ class PathFinderPage extends Component {
 		super(props);
 		this.state = {
 			grid: this.generateGrid(),
+			displayFailedMessage: false,
 		};
 		this.generateGrid = this.generateGrid.bind(this);
 		this.generateGridCells = this.generateGridCells.bind(this);
+		this.displayFailedMessage = this.displayFailedMessage.bind(this);
 	}
 	
 	generateGrid() {
@@ -133,6 +135,15 @@ class PathFinderPage extends Component {
 		});
 	}
 
+	displayFailedMessage() {
+		this.setState({
+			displayFailedMessage: true,
+		});
+		setTimeout( function() {
+			this.setState({displayFailedMessage: false,});
+		}.bind(this), 1000);
+	}
+
 	render() {
 		return(	
 			<span>
@@ -144,7 +155,21 @@ class PathFinderPage extends Component {
 				</grid-container>
 				<PathFindingButton/>
 				{this.props.start && 
-				<AStarSearchAlgorithm startPos={startPos} endPos={endPos}/>}
+				<AStarSearchAlgorithm 
+					startPos={startPos} 
+					endPos={endPos} 
+					displayFailedMessage={this.displayFailedMessage}
+				/>
+				}
+				
+				<Transition visible={this.state.displayFailedMessage} 
+						animation="scale" 
+						duration = {2000}>
+					<h1 className="failedPathFindingText" 
+						onClick={this.textFadeAway}>
+						NO PATH FOUND.
+					</h1>
+				</Transition>
 			</span>
 		)
 	}
