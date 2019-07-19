@@ -16,3 +16,10 @@ grid-container {
 	margin: 0 auto !important;
 	color: red;
 }
+
+.successPathFindingText.visible.transition {
+	display: flex !important;
+	justify-content: center;
+	margin: 0 auto !important;
+	color: lightgreen;
+}

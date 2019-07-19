@@ -81,10 +81,11 @@ class PathFinderPage extends Component {
 		this.state = {
 			grid: this.generateGrid(),
 			displayFailedMessage: false,
+			displaySuccessMessage: false,
 		};
 		this.generateGrid = this.generateGrid.bind(this);
 		this.generateGridCells = this.generateGridCells.bind(this);
-		this.displayFailedMessage = this.displayFailedMessage.bind(this);
+		this.displayMessage = this.displayMessage.bind(this);
 	}
 	
 	generateGrid() {
@@ -135,13 +136,23 @@ class PathFinderPage extends Component {
 		});
 	}
 
-	displayFailedMessage() {
-		this.setState({
-			displayFailedMessage: true,
-		});
-		setTimeout( function() {
-			this.setState({displayFailedMessage: false,});
-		}.bind(this), 1000);
+	displayMessage(messageType) {
+		if (messageType === "FAILED") {
+			this.setState({
+				displayFailedMessage: true,
+			});
+			setTimeout( function() {
+				this.setState({displayFailedMessage: false,});
+			}.bind(this), 1000);
+		}
+		else if (messageType === "SUCCESS") {
+			this.setState({
+				displaySuccessMessage: true,
+			});
+			setTimeout( function() {
+				this.setState({displaySuccessMessage: false,});
+			}.bind(this), 1000);
+		}	
 	}
 
 	render() {
@@ -158,18 +169,26 @@ class PathFinderPage extends Component {
 				<AStarSearchAlgorithm 
 					startPos={startPos} 
 					endPos={endPos} 
-					displayFailedMessage={this.displayFailedMessage}
+					displayMessage={this.displayMessage}
 				/>
 				}
 				
 				<Transition visible={this.state.displayFailedMessage} 
 						animation="scale" 
 						duration = {2000}>
-					<h1 className="failedPathFindingText" 
-						onClick={this.textFadeAway}>
-						NO PATH FOUND.
+					<h1 className="failedPathFindingText">
+						NO PATH FOUND
 					</h1>
 				</Transition>
+
+				<Transition visible={this.state.displaySuccessMessage} 
+						animation="scale" 
+						duration = {2000}>
+					<h1 className="successPathFindingText">
+						PATH FOUND
+					</h1>
+				</Transition>
+				
 			</span>
 		)
 	}
