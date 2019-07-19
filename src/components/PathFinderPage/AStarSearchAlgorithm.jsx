@@ -58,7 +58,7 @@ class AStarSearchAlgorithm extends Component {
 				setTimeout(this.props.changeGridCell, 0.500, pos, 3);
 			}
 			setTimeout(this.props.changeGridCell, 1.000, this.props.endPos, 1);	
-			setTimeout(this.props.displayMessage, 2.000, "SUCCESS");
+			setTimeout(this.props.displayMessage, 1.000, "SUCCESS");
 		}		
 		else {
 			setTimeout(this.props.changeGridCell, 1.000, this.props.startPos, 4);				
