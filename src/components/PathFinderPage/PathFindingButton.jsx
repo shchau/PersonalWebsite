@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as PathFinderActions from '../../actions/PathFinderActions';
 import { Button } from 'semantic-ui-react';
@@ -78,6 +79,17 @@ const mapDispatchToProps = dispatch => {
 			return dispatch(PathFinderActions.allowGridChanges());
 		},
     }
+}
+
+PathFindingButton.propTypes = {
+	gridCopy: PropTypes.array.isRequired,
+	
+	start: PropTypes.bool.isRequired,
+	grid: PropTypes.array.isRequired,
+	
+	startPathFinding: PropTypes.func.isRequired,
+	setGrid: PropTypes.func.isRequired,
+	allowGridChanges: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PathFindingButton);

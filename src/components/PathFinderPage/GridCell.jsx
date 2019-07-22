@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as PathFinderActions from '../../actions/PathFinderActions';
-import PropTypes from 'prop-types';
 import '../../styles/components/PathFinderPage/GridCell.css';
 
 const statuses = {
@@ -63,14 +63,8 @@ class GridCell extends Component {
     }
 }
 
-GridCell.propTypes = {
-	cellID: PropTypes.string.isRequired,
-	status: PropTypes.number.isRequired,
-}
-
 const mapStateToProps = state => {
     return {
-		start: state.PathFinderReducer.start,
         grid: state.PathFinderReducer.grid,
 		allowGridChanges: state.PathFinderReducer.allowGridChanges,
     }
@@ -82,6 +76,15 @@ const mapDispatchToProps = dispatch => {
             return dispatch(PathFinderActions.changeGridCell(position, newValue));
         },
     }
+}
+
+GridCell.propTypes = {
+	cellID: PropTypes.string.isRequired,
+	status: PropTypes.number.isRequired,
+	
+	grid: PropTypes.array.isRequired,
+	allowGridChanges: PropTypes.bool.isRequired,
+	changeGridCell: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridCell);
