@@ -9,6 +9,7 @@
     "react": "^16.8.4",
     "react-addons-update": "^15.6.2",
     "react-dom": "^16.8.4",
+    "react-helmet": "^5.2.1",
     "react-mt-svg-lines": "^0.9.1",
     "react-pose": "^4.0.8",
     "react-pose-text": "^3.1.0",

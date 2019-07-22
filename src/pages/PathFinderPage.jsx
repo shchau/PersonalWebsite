@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet'; 
 import {connect} from 'react-redux';
 import { Transition } from 'semantic-ui-react';
 import GridCell from '../components/PathFinderPage/GridCell.jsx';
@@ -151,13 +152,18 @@ class PathFinderPage extends Component {
 			});
 			setTimeout( function() {
 				this.setState({displaySuccessMessage: false,});
-			}.bind(this), 1000);
+			}.bind(this), 0.500);
 		}	
 	}
 
 	render() {
 		return(	
 			<span>
+				<Helmet>
+					<title> Spacey: Path Finder Page </title>
+					<meta name="description" content="A visualization for the A* Path Finding Algorithm done in React"></meta>
+				</Helmet>
+			
 				<grid-container style={{
 					gridTemplateColumns: gridCols,
 					gridTemplateRows: gridRows,
@@ -175,7 +181,7 @@ class PathFinderPage extends Component {
 				
 				<Transition visible={this.state.displayFailedMessage} 
 						animation="scale" 
-						duration = {2000}>
+						duration = {1500}>
 					<h1 className="failedPathFindingText">
 						NO PATH FOUND
 					</h1>
@@ -183,7 +189,7 @@ class PathFinderPage extends Component {
 
 				<Transition visible={this.state.displaySuccessMessage} 
 						animation="scale" 
-						duration = {2000}>
+						duration = {1500}>
 					<h1 className="successPathFindingText">
 						PATH FOUND
 					</h1>
