@@ -32,7 +32,6 @@
   }
 }
 
-.sidebarPusher {
-	width: 100vw;
-	height: 90vh;
+body {
+	height: auto;
 }

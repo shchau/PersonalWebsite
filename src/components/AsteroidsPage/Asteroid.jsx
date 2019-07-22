@@ -6,7 +6,7 @@ import '../../styles/components/AsteroidsPage/Asteroid.css';
 
 const Circle = posed.div({
 	small: {
-		scale: 1,
+		scale: 1.5,
 		opacity: 0.5,
 	},
 	
@@ -48,6 +48,7 @@ class Asteroid extends Component {
 	}
 
 	explodeAsteroid() {
+		console.log("Hmm", this.props.id);
 		this.setState({
 			exploded: true,
 		});
@@ -57,6 +58,7 @@ class Asteroid extends Component {
 	render() {
 		let asteroidClasses = ["asteroid", "asteroidMini", "explosion", "explosionMini"];
 		let selectedAsteroidClass;
+
 		return(	
 			<MediaQuery maxDeviceWidth={1224}>
 				{(matches) => {
