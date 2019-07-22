@@ -48,7 +48,6 @@ class Asteroid extends Component {
 	}
 
 	explodeAsteroid() {
-		console.log("Hmm", this.props.id);
 		this.setState({
 			exploded: true,
 		});
