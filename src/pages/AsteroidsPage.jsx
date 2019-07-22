@@ -134,7 +134,7 @@ class AsteroidsPage extends Component {
 
 	render() {
 		return(	
-			<span>
+			<React.Fragment>
 			<Helmet>
 				<title> Spacey: Asteroids Page </title>
 				<meta name="description" content="Clicking on each asteroid brings up a random Wikipedia article's title, desc, and content"></meta>
@@ -161,7 +161,7 @@ class AsteroidsPage extends Component {
 				<img src={require("../assets/images/explosion.png")} alt=''/>
 			</span>
 			
-			</span>
+			</React.Fragment>
 			)
     }
 }

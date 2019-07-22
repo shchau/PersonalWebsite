@@ -13,13 +13,18 @@ class AboutMePage extends Component {
 
 	render() {
 		return(	
-			<div>
+			<React.Fragment>
 			<Helmet>
 				<title> Spacey: About Me </title>
 				<meta name="description" content="I am Simon Chau, University of Alberta graduate (soon). Click here to find out more..."></meta>
 			</Helmet>
 			<Planet textsArray={textsArray} planetClass={"aboutMePlanet"}/>
-			</div>
+			
+			<span className="hidden">
+				<img src={require("../assets/images/planetTexture2.jpeg")} alt=''/>	
+			</span>
+			
+			</React.Fragment>
 			)
     }
 }

@@ -169,8 +169,8 @@ class AStarSearchAlgorithm extends Component {
 
 	render() {
 		return(
-			<span>
-			</span>
+			<React.Fragment>
+			</React.Fragment>
 		)
     }
 }

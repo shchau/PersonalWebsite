@@ -11,13 +11,18 @@ const textsArray = [
 class HomePage extends Component {	
 	render() {
 		return(	
-			<div>
+			<React.Fragment>
 				<Helmet>
 					<title> Spacey: Home Page </title>
 					<meta name="description" content="If you're seeing this, you're probably someone who knows what they're doing. "></meta>
 				</Helmet>
 				<Planet textsArray={textsArray} planetClass={"homePagePlanet"}/>
-			</div>
+				
+			<span className="hidden">
+				<img src={require("../assets/images/planetTexture1.jpeg")} alt=''/>	
+			</span>
+			
+			</React.Fragment>
 		)
 	}
 }

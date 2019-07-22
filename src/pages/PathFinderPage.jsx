@@ -158,7 +158,7 @@ class PathFinderPage extends Component {
 
 	render() {
 		return(	
-			<span>
+			<React.Fragment>
 				<Helmet>
 					<title> Spacey: Path Finder Page </title>
 					<meta name="description" content="A visualization for the A* Path Finding Algorithm done in React"></meta>
@@ -195,7 +195,7 @@ class PathFinderPage extends Component {
 					</h1>
 				</Transition>
 				
-			</span>
+			</React.Fragment>
 		)
 	}
 }

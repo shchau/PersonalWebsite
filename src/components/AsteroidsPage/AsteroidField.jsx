@@ -58,12 +58,12 @@ class AsteroidField extends Component {
 
 	render() {
 		return(	
-			<span>
+			<React.Fragment>
 				{[this.drawAsteroids()]}
 				<span className="offscreen">
 					<Asteroid id={-1} removeAsteroid={this.removeAsteroid}/>
 				</span>
-			</span>
+			</React.Fragment>
 			)
     }
 }

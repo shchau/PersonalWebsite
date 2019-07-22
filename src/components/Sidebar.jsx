@@ -8,7 +8,7 @@ class SideBar extends Component {
 
 	render() {
 		return( 
-			<div>	
+			<React.Fragment>	
 					<Sidebar as={Menu} animation='overlay' icon='labeled' inverted vertical visible={this.props.visible} width='thin'>
 						<Menu.Item as={NavLink} to="/Home" onClick={this.props.handleSidebarVisibility}>
 							<Icon name='home' />
@@ -44,7 +44,7 @@ class SideBar extends Component {
 							Hide sidebar
 						</Button>
 					</Button.Group>
-			</div>	
+			</React.Fragment>	
 		);
 	}
 }
