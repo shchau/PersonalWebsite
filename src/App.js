@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Route, Switch, BrowserRouter} from "react-router-dom";
+import { Sidebar } from "semantic-ui-react";
 import SideBar from './components/Sidebar';
 import HomePage from './pages/HomePage';
 import AboutMePage from './pages/AboutMePage';
@@ -38,6 +39,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<SideBar visible={this.state.visible} handleSidebarVisibility={this.handleSidebarVisibility}/>
+					<Sidebar.Pusher onClick={this.closeSidebar}>
 					<div className="stars"> </div>
 					<div className="twinkling"></div>
 					<div className="clouds"></div>
@@ -51,6 +53,7 @@ class App extends Component {
 						<Route exact path="/PathFinder" component={PathFinderPage}/>
 						<Route component={NotFound} />
 					</Switch>
+					</Sidebar.Pusher>
 			</BrowserRouter>	
 		);
   }
