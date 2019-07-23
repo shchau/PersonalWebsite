@@ -11,7 +11,7 @@ class PathFindingButton extends Component {
 		super(props);
 		this.state = {
 			buttonText: "START",
-			gridCopy: this.props.gridCopy,
+			gridCopy: this.props.grid,
 		};
 		this.startPathFindingOrReset = this.startPathFindingOrReset.bind(this);
 	}
@@ -82,8 +82,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 PathFindingButton.propTypes = {
-	gridCopy: PropTypes.array.isRequired,
-	
 	start: PropTypes.bool.isRequired,
 	grid: PropTypes.array.isRequired,
 	
