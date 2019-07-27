@@ -54,20 +54,25 @@ class AStarSearchAlgorithm extends Component {
 		let results = this.beginSearch();
 		
 		if (results.length > 0) {
-			for (let i = 0; i < results.length-1; i++) {
+			for (let i = 0; i < results.length; i++) {
 				let pos = [results[i][0], results[i][1]];
-				let delay = 2.000 + (i / 10); 
+				let delay = 2.000 + (i * 100); 
 				
-				setTimeout(this.props.changeGridCell, delay, pos, 3);
+				if (pos.toString() === this.props.endPos.toString()) {
+					setTimeout(this.props.changeGridCell, delay, this.props.endPos, 1);	
+					setTimeout(this.props.displayMessage, delay, "SUCCESS");		
+					setTimeout(this.props.finishPathFinding, delay);				
+				}
+				else {
+					setTimeout(this.props.changeGridCell, delay, pos, 3);
+				}
 			}
-			setTimeout(this.props.changeGridCell, 1.000, this.props.endPos, 1);	
-			setTimeout(this.props.displayMessage, 1.000, "SUCCESS");
 		}		
 		else {
 			setTimeout(this.props.changeGridCell, 1.000, this.props.startPos, 4);				
 			this.props.displayMessage("FAILED");
-		}
-		setTimeout(this.props.finishPathFinding, 1.000);	
+			setTimeout(this.props.finishPathFinding, 1.000);
+		}	
 	}
 
 	beginSearch() {
