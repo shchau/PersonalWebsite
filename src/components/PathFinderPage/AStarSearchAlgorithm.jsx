@@ -50,13 +50,13 @@ class AStarSearchAlgorithm extends Component {
 		this.getNeighbours = this.getNeighbours.bind(this);
 	}
 	
-	componentDidMount() {
-		let results = this.beginSearch();
+	async componentDidMount() {
+		let results = await this.beginSearch();
 		
 		if (results.length > 0) {
 			for (let i = 0; i < results.length; i++) {
 				let pos = [results[i][0], results[i][1]];
-				let delay = 2.000 + (i * 100); 
+				let delay = 2000 + (i * 100); 
 				
 				if (pos.toString() === this.props.endPos.toString()) {
 					setTimeout(this.props.changeGridCell, delay, this.props.endPos, 1);	
@@ -75,7 +75,7 @@ class AStarSearchAlgorithm extends Component {
 		}	
 	}
 
-	beginSearch() {
+	async beginSearch() {
 		let startingNode = new node(this.props.startPos[0], this.props.startPos[1]);
 		let openHeap = heap();
 		
@@ -96,7 +96,7 @@ class AStarSearchAlgorithm extends Component {
 				return returnPath.reverse();
 			}
 			
-			let delay = 1.000 + (openHeap.size() / 100);
+			let delay = 1000 / (currentNode.h + 1);
 			if (currentNode.pos.toString() !== startingNode.pos.toString()) {
 				setTimeout(this.props.changeGridCell, delay, currentNode.pos, 2);
 			}
