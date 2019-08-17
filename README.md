@@ -1,3 +1,8 @@
+![Spacey: The Home Page with a planet that says "Welcome"](https://raw.githubusercontent.com/shchau/PersonalWebsite/master/screenshots/HomePage.png)
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
