@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet'; 
 import {connect} from 'react-redux';
 import { Transition } from 'semantic-ui-react';
+
+import TutorialScreen from '../components/TutorialScreen';
 import GridCell from '../components/PathFinderPage/GridCell.jsx';
 import PathFindingButton from '../components/PathFinderPage/PathFindingButton';
 import AStarSearchAlgorithm from '../components/PathFinderPage/AStarSearchAlgorithm';
+
 import * as PathFinderActions from '../actions/PathFinderActions';
 import '../styles/pages/PathFinderPage.css';
 
@@ -163,6 +166,10 @@ class PathFinderPage extends Component {
 					<title> Spacey: Path Finder Page </title>
 					<meta name="description" content="A visualization for the A* Path Finding Algorithm done in React"></meta>
 				</Helmet>
+			
+				<TutorialScreen 
+					message='Click the grid to change between open and obstacle cells, then press Start'
+				/>
 			
 				<grid-container style={{
 					gridTemplateColumns: gridCols,

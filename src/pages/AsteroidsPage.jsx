@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet'; 
+
+import TutorialScreen from '../components/TutorialScreen';
 import AsteroidField from '../components/AsteroidsPage/AsteroidField';
 import RewardModal from '../components/AsteroidsPage/RewardModal';
-import { Transition } from 'semantic-ui-react';
+
 import {connect} from 'react-redux';
 import HTTPFetchUtils from '../utils/HTTPFetchUtils.js';
 import '../styles/pages/AsteroidsPage.css';
@@ -135,14 +137,13 @@ class AsteroidsPage extends Component {
 	render() {
 		return(	
 			<React.Fragment>
+			
 			<Helmet>
 				<title> Spacey: Asteroids Page </title>
 				<meta name="description" content="Clicking on each asteroid brings up a random Wikipedia article's title, desc, and content"></meta>
 			</Helmet>
 			
-			<Transition visible={this.state.visible} animation="scale" duration = {1000}>
-				<h1 className="guideText" onClick={this.textFadeAway}>Click the asteroids</h1>
-			</Transition>
+			<TutorialScreen message="Click all the Asteroids to get a random Wikipedia page"/>
 			
 			{this.props.showModal
 			?
