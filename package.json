@@ -3,21 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "jsplumb": "^2.10.0",
+    "jsplumb": "^2.12.0",
     "jsplumb-react": "0.0.27",
     "prop-types": "^15.7.2",
-    "react": "^16.8.4",
+    "react": "^16.10.2",
     "react-addons-update": "^15.6.2",
-    "react-dom": "^16.8.4",
+    "react-dom": "^16.10.2",
     "react-helmet": "^5.2.1",
     "react-mt-svg-lines": "^0.9.1",
     "react-pose": "^4.0.8",
     "react-pose-text": "^3.1.0",
-    "react-redux": "^7.1.0",
+    "react-redux": "^7.1.1",
     "react-responsive": "^6.1.2",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
-    "redux": "^4.0.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.2.0",
+    "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0"
@@ -38,7 +38,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^2.1.1",
     "mini-css-extract-plugin": "^0.6.0"
   }
 }
